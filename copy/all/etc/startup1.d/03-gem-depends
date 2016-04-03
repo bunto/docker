@@ -1,0 +1,42 @@
+#!/bin/sh
+[ "$DEBUG" ] && set -x
+set -e
+
+#
+
+if [ -f "/image" ] && [ "$(cat /image)" = "pages" ]; then
+  echo "Github does not allow user dependencies."
+  exit 0
+fi
+
+#
+
+strip_bunto() {
+  if grep -qE "gem\s+(\"|')bunto(\"|')"  Gemfile
+    then sed -ri "/^gem\s+(\"|')bunto\1.*$/d" Gemfile
+  fi
+}
+
+#
+
+cd /srv/bunto
+if [ "$FORCE_APK_INSTALL" ]
+  then install_user_pkgs_from_file
+fi
+
+#
+
+if [ -f "Gemfile" ] || ! docker-helper is_bundle_cmd "$@"; then
+  if ! docker-helper will_bundle_install
+
+    # When we can reliably detect that the uer will not be using
+    # bundler we go ahead and run it as root because it will probably
+    # be doing a global install, so it should be root.
+
+    then docker-helper install_users_gems
+  else
+    chpst -u bunto:bunto docker-helper install_users_gems
+    >&2 echo "See a list of our default gems at: "
+    >&2 echo "  https://github.com/bunto/docker#default-gems.\n"
+  fi
+fi
