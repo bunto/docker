@@ -26,10 +26,10 @@ jobs:
   - stage: build
     env: DOCKER_REPO='bunto:3.4.5 bunto:3.4 bunto:stable bunto:latest bunto:3'
   - env: DOCKER_REPO='bunto:3.2.1 bunto:3.2'
-  - env: DOCKER_REPO=bunto:pages
-  - env: DOCKER_REPO='builder:3.4.5 builder:3.4 builder:stable builder:latest builder:3'
-  - env: DOCKER_REPO='builder:3.2.1 builder:3.2'
-  - env: DOCKER_REPO=builder:pages
-  - env: DOCKER_REPO='minimal:3.4.5 minimal:3.4 minimal:stable minimal:latest minimal:3'
-  - env: DOCKER_REPO='minimal:3.2.1 minimal:3.2'
-  - env: DOCKER_REPO=minimal:pages
+  #- env: DOCKER_REPO=bunto:pages
+  #- env: DOCKER_REPO='builder:3.4.5 builder:3.4 builder:stable builder:latest builder:3'
+  #- env: DOCKER_REPO='builder:3.2.1 builder:3.2'
+  #- env: DOCKER_REPO=builder:pages
+  #- env: DOCKER_REPO='minimal:3.4.5 minimal:3.4 minimal:stable minimal:latest minimal:3'
+  #- env: DOCKER_REPO='minimal:3.2.1 minimal:3.2'
+  #- env: DOCKER_REPO=minimal:pages

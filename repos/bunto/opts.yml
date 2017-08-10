@@ -3,23 +3,23 @@ aliases:
 gems:
   all:
     - html-proofer
-    - bunto-mentions
-    - bunto-coffeescript
-    - bunto-sass-converter
-    - bunto-paginate
-    - bunto-compose
+    #- bunto-mentions
+    #- bunto-coffeescript
+    #- bunto-sass-converter
+    #- bunto-paginate
+    #- bunto-compose
     - RedCloth
     - kramdown
-    - bemoji
+    #- bemoji
   group:
     relative: &relative
-      - bunto-redirect-from
-      - bunto-sitemap
-      - bunto-feed
+      #- bunto-redirect-from
+      #- bunto-sitemap
+      #- bunto-feed
       - minima
     stable:
       - *relative
 
     pages:
-      - bunto-github-metadata
+      #- bunto-github-metadata
       - github-pages
