@@ -1,0 +1,34 @@
+#!/bin/bash
+set -e
+
+if [ ! -f "/updated" ]; then
+  if connected; then
+    if [ -f ".apk" ]; then
+      apk add --no-progress $(cat .apk)
+    fi
+  fi
+fi
+
+chown -R bunto:bunto $PWD
+if [ -f "Gemfile" ]; then
+  if [ "$BUNDLE_CACHE" = "true" ]; then
+    sudo -EHu bunto bundle config --local path vendor/bundle
+    sudo -EHu bunto bundle config --local disable_shared_gems true
+    sudo -EHu bunto bundle config --local jobs 2
+  fi
+
+  # --
+
+  if [ "$1" = "install" ]; then
+    if ! sudo -EHu bunto bundle check; then
+      sudo -EHu bunto bundle config ignore_messages true
+      # Prevent some weird Nokogiri errors that happen lately.
+      sudo -EHu bunto bundle config build.nokogiri --use-system-libraries
+      sudo -EHu bunto bundle config disable_version_check true
+      sudo -EHu bunto bundle install
+    fi
+
+  else
+    sudo -EHu bunto bundle "$@"
+  fi
+fi

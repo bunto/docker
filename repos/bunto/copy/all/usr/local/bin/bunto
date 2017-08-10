@@ -1,0 +1,24 @@
+#!/bin/bash
+set -e
+
+: ${BUNTO_UID:=$UID}
+ARGS=$(default-args $@)
+export BUNTO_UID
+
+if [ "$BUNTO_UID" != "0" ]; then
+  if [ "$BUNTO_UID" != "$(id -u bunto)" ]; then
+    reset-user bunto:"$BUNTO_UID"
+  fi
+fi
+
+chown -R bunto:bunto $PWD
+if connected
+  then depends install
+fi
+
+if [ -f Gemfile ]; then
+  sudo -EHu bunto bundle exec ruby \
+    /usr/bin/bunto $ARGS
+else
+  sudo -EHu bunto /usr/bin/bunto $ARGS
+fi

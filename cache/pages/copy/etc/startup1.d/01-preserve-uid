@@ -1,6 +1,0 @@
-#!/bin/sh
-set -e
-uid=$(docker-helper get_file_uid /srv/bunto)
-if [ "$uid" != 1000 ] && [ "$uid" != 0 ]; then
-  docker-helper reset_user bunto:$uid
-fi

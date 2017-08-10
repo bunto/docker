@@ -1,0 +1,11 @@
+gems:
+  all: &gems
+    - kramdown
+    - bunto-sass-converter
+    - bunto-coffeescript
+    - minima
+  group:
+    pages:
+      - *gems
+      - github-pages
+      - bunto-github-metadata

@@ -1,3 +1,0 @@
-#!/bin/sh
-chown -R bunto:bunto /srv/bunto/vendor/bundle > /dev/null 2>&1 || true
-chown -R bunto:bunto /srv/bunto/_site > /dev/null 2>&1 || true

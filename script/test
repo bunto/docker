@@ -1,0 +1,6 @@
+#!/bin/bash -l
+set -e
+
+echo "Skipping tests."
+echo "There are currently not tests."
+exit 0

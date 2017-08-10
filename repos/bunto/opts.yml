@@ -1,0 +1,25 @@
+aliases:
+  builder: bunto/builder:latest
+gems:
+  all:
+    - html-proofer
+    - bunto-mentions
+    - bunto-coffeescript
+    - bunto-sass-converter
+    - bunto-paginate
+    - bunto-compose
+    - RedCloth
+    - kramdown
+    - bemoji
+  group:
+    relative: &relative
+      - bunto-redirect-from
+      - bunto-sitemap
+      - bunto-feed
+      - minima
+    stable:
+      - *relative
+
+    pages:
+      - bunto-github-metadata
+      - github-pages

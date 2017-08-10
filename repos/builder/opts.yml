@@ -1,0 +1,31 @@
+packages:
+  all:
+    - rsync
+    - openssh-client
+    - lftp
+    - git
+env:
+  all:
+    BUNTO_ENV: production
+gems:
+  all: &gems
+    - s3_website
+    - html-proofer
+    - bunto-sitemap
+    - bunto-mentions
+    - bunto-coffeescript
+    - bunto-sass-converter
+    - bunto-redirect-from
+    - bunto-paginate
+    - bunto-compose
+    - bunto-feed
+    - bunto-docs
+    - RedCloth
+    - kramdown
+    - bemoji
+    - minima
+  group:
+    pages:
+      - *gems
+      - github-pages
+      - bunto-github-metadata

@@ -1,0 +1,6 @@
+#!/bin/bash -l
+set -e
+
+bundle exec docker-template build $DOCKER_REPO \
+  --no-push --force --squash || \
+      exit $?

@@ -1,5 +1,0 @@
-#!/bin/sh
-cd /srv/bunto
-chpst -u bunto:bunto bunto s --watch &
-wait $!
-exit $?

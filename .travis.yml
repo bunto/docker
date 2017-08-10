@@ -1,0 +1,35 @@
+services:
+- docker
+before_script:
+  - chmod a+x script/build
+  - chmod a+x script/debug
+  - chmod a+x script/deploy
+  - chmod a+x script/install
+  - chmod a+x script/test
+  - chmod a+x script/travis
+script: script/travis
+sudo: required
+os: linux
+cache:
+  bundler: true
+  directories:
+  - vendor/bundle
+env:
+  global:
+  - DOCKER_EMAIL=isc.suriyaa@gmail.com
+  - DOCKER_USERNAME=suriyaakudo
+  - secure: HLQtGlUgR7uVS2KIMiAraJ/pKg54uhDHvZIMjk7EIWjzlH+ZlaHBZEkZdMmHO3VTwWazTlwcUSn7DEdInPoxRm5sDll0hQfYddQEnkaxcerEf/XNGeqk4+imhx2ZcH105wwNtlbY3BmDwsN9g1udXwxJS5uDuohCQpItz0gF6/GQUVbVAwLN8g8HVGVovwfuCzs8u6OY/ONUiQxf9dfRzMAXNw+ceEBYreycMpx5rhmVpkpXidP/OGzo8BATiV9XyAZQRaQ6w8tTtd1FpyChkr3n1Y8Gmf4BqBmtbOznghPRd9OhwYyKYFn89HjbzA3FJwnWI1fQPSWopCHsAVpJXLb8mIJe1lE5z6a48CuNV1F4WltCHLcBo63hmaSjl7GiW7L0XUUi4AbUj6rCsmwN+6+rrGr2FcDe6ffST+DL71QjPUPIdSQKh137JHWzBOgzitchh5byX/wl8HLrrFMg86LHNhEL+xDsIDCZXw3mj6XwqGQnd7gpA1JFu1JnP3WpzUqgTLt2HPMEgmYnwU1NXpZcmUmZic/LLeQrGsRox7BGmMLPZXJ8uT0vQJ+ETZv1CV7CzbwrHYqRZgQYXJ4DGnjj0UGWYpppF9eZ4L90HaIQ08/rldErlhUCtebZuRNZgyDrrTQows0Y28wIjshPr5A5dFVVdIroW+XE+djxWSw=
+jobs:
+  include:
+  - script: true
+    stage: precache
+  - stage: build
+    env: DOCKER_REPO='bunto:3.4.5 bunto:3.4 bunto:stable bunto:latest bunto:3'
+  - env: DOCKER_REPO='bunto:3.2.1 bunto:3.2'
+  - env: DOCKER_REPO=bunto:pages
+  - env: DOCKER_REPO='builder:3.4.5 builder:3.4 builder:stable builder:latest builder:3'
+  - env: DOCKER_REPO='builder:3.2.1 builder:3.2'
+  - env: DOCKER_REPO=builder:pages
+  - env: DOCKER_REPO='minimal:3.4.5 minimal:3.4 minimal:stable minimal:latest minimal:3'
+  - env: DOCKER_REPO='minimal:3.2.1 minimal:3.2'
+  - env: DOCKER_REPO=minimal:pages
